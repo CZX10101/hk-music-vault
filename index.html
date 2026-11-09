@@ -34,8 +34,7 @@
                 <a href="song-picker.html" class="btn-primary" data-en="Explore Heartbeat Mode ↗" data-zh="探索心动模式 ↗">Explore Heartbeat Mode ↗</a>
                 <a href="artists.html" class="btn-secondary" data-en="About Artists" data-zh="关于歌手">About Artists</a>
             </div>
-            <!-- 新增：底下的一行极简注释，让截图更饱满 -->
-            <div style="margin-top: 4rem; font-size: 0.85rem; color: #555; letter-spacing: 1px;">
+            <div style="margin-top: 3rem; font-size: 0.85rem; color: #555; letter-spacing: 1px;">
                 <span data-en="Curated by a Cantopop lover. Built week by week." data-zh="由港乐爱好者精选。每周持续更新。">Curated by a Cantopop lover. Built week by week.</span>
             </div>
         </div>
@@ -63,7 +62,6 @@
     <footer><p>Built with pure HTML, CSS & JS | <span>&copy; 2026 Cai Zhixuan</span></p></footer>
     <script>
         let currentLang = localStorage.getItem('siteLang') || 'en';
-        
         function updateLangBtn() {
             const enOption = document.getElementById('switch-en');
             const zhOption = document.getElementById('switch-zh');
@@ -75,16 +73,13 @@
                 zhOption.classList.add('active');
             }
         }
-
         function applyLanguage(lang) {
             document.querySelectorAll('[data-en][data-zh]').forEach(el => {
                 el.innerHTML = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-zh');
             });
             updateLangBtn();
         }
-        
         applyLanguage(currentLang);
-        
         document.getElementById('lang-toggle').addEventListener('click', () => {
             currentLang = currentLang === 'en' ? 'zh' : 'en';
             localStorage.setItem('siteLang', currentLang);
@@ -94,7 +89,6 @@
         let currentSlideIndex = 0;
         const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.dot');
-        
         function changeSlide(index) {
             slides.forEach(s => s.classList.remove('active'));
             dots.forEach(d => d.classList.remove('active'));
@@ -102,7 +96,6 @@
             dots[index].classList.add('active');
             currentSlideIndex = index;
         }
-        
         setInterval(() => {
             let nextIndex = (currentSlideIndex + 1) % slides.length;
             changeSlide(nextIndex);
