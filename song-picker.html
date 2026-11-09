@@ -23,11 +23,40 @@
     </div>
     <script>
         const songs = [
-            { title: "海阔天空", artist: "Beyond" },
-            { title: "富士山下", artist: "Eason Chan" },
-            { title: "倩女幽魂", artist: "Leslie Cheung" },
-            { title: "喜帖街", artist: "Kay Tse" }
+            // 陈奕迅
+            { title: "富士山下", artist: "陈奕迅" }, { title: "陀飞轮", artist: "陈奕迅" }, { title: "十年", artist: "陈奕迅" }, { title: "浮夸", artist: "陈奕迅" }, { title: "K歌之王", artist: "陈奕迅" },
+            // 张敬轩
+            { title: "樱花树下", artist: "张敬轩" }, { title: "青春常驻", artist: "张敬轩" }, { title: "断点", artist: "张敬轩" }, { title: "酷爱", artist: "张敬轩" }, { title: "我的天", artist: "张敬轩" },
+            // 周柏豪
+            { title: "够钟", artist: "周柏豪" }, { title: "传闻", artist: "周柏豪" }, { title: "一事无成", artist: "周柏豪" }, { title: "还记得", artist: "周柏豪" }, { title: "小白", artist: "周柏豪" },
+            // Dear Jane
+            { title: "哪里只得我共你", artist: "Dear Jane" }, { title: "不许你注定一人", artist: "Dear Jane" }, { title: "经过一些秋与冬", artist: "Dear Jane" }, { title: "到底发生过什么事", artist: "Dear Jane" }, { title: "人类不宜飞行", artist: "Dear Jane" },
+            // 杨千嬅
+            { title: "可惜我是水瓶座", artist: "杨千嬅" }, { title: "少女的祈祷", artist: "杨千嬅" }, { title: "处处吻", artist: "杨千嬅" }, { title: "再见二丁目", artist: "杨千嬅" }, { title: "野孩子", artist: "杨千嬅" },
+            // 容祖儿
+            { title: "连续剧", artist: "容祖儿" }, { title: "续集", artist: "容祖儿" }, { title: "怯", artist: "容祖儿" }, { title: "心淡", artist: "容祖儿" }, { title: "心之科学", artist: "容祖儿" },
+            // 侧田
+            { title: "命硬", artist: "侧田" }, { title: "好人", artist: "侧田" }, { title: "男人KTV", artist: "侧田" }, { title: "Kong", artist: "侧田" }, { title: "情歌", artist: "侧田" },
+            // 卫兰
+            { title: "大哥", artist: "卫兰" }, { title: "离家出走", artist: "卫兰" }, { title: "就算世界无童话", artist: "卫兰" }, { title: "街灯晚餐", artist: "卫兰" }, { title: "心乱如麻", artist: "卫兰" },
+            // 陈小春
+            { title: "相依为命", artist: "陈小春" }, { title: "乱世巨星", artist: "陈小春" }, { title: "献世", artist: "陈小春" }, { title: "没那种命", artist: "陈小春" }, { title: "算你狠", artist: "陈小春" },
+            // 谢安琪
+            { title: "喜帖街", artist: "谢安琪" }, { title: "钟无艳", artist: "谢安琪" }, { title: "罗生门", artist: "谢安琪" }, { title: "年度之歌", artist: "谢安琪" }, { title: "山林道", artist: "谢安琪" },
+            // 官恩娜
+            { title: "地平线", artist: "官恩娜" }, { title: "暗恋", artist: "官恩娜" }, { title: "戏中有气", artist: "官恩娜" }, { title: "千帆", artist: "官恩娜" }, { title: "珊瑚岛", artist: "官恩娜" },
+            // 林峯
+            { title: "爱不疚", artist: "林峯" }, { title: "幼稚未完", artist: "林峯" }, { title: "换个方式爱你", artist: "林峯" }, { title: "Chok", artist: "林峯" }, { title: "记得忘记", artist: "林峯" },
+            // 钟嘉欣
+            { title: "发誓", artist: "钟嘉欣" }, { title: "最幸福的事", artist: "钟嘉欣" }, { title: "其实我不快乐", artist: "钟嘉欣" }, { title: "预防针", artist: "钟嘉欣" }, { title: "你是我心内的一首歌", artist: "钟嘉欣" },
+            // 李幸倪
+            { title: "双双", artist: "李幸倪" }, { title: "很坚强", artist: "李幸倪" }, { title: "日出时让街灯安睡", artist: "李幸倪" }, { title: "好不容易", artist: "李幸倪" }, { title: "芝麻开门", artist: "李幸倪" },
+            // AGA
+            { title: "3AM", artist: "AGA" }, { title: "孤雏", artist: "AGA" }, { title: "Wonderful U", artist: "AGA" }, { title: "圆", artist: "AGA" }, { title: "一", artist: "AGA" },
+            // 连诗雅
+            { title: "到此为止", artist: "连诗雅" }, { title: "说一句", artist: "连诗雅" }, { title: "旧街角", artist: "连诗雅" }, { title: "水星逆行", artist: "连诗雅" }, { title: "只要和你在一起", artist: "连诗雅" }
         ];
+
         function pickSong() {
             const randomIndex = Math.floor(Math.random() * songs.length);
             const song = songs[randomIndex];
