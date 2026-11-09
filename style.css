@@ -10,19 +10,17 @@ html { scroll-behavior: smooth; }
 body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
 button, a, .load-more-trigger, .dot, .btn-primary, .btn-secondary, .exit-btn, .lang-switch { cursor: pointer; }
 
-/* 导航栏 (电脑端) */
+/* 电脑端布局 */
 nav { background-color: var(--bg-color); padding: 1.5rem 2rem; display: flex; justify-content: center; align-items: center; border-bottom: 1px solid var(--border-color); position: relative; min-height: 80px; }
 .nav-links { display: flex; gap: 50px; }
 nav a { color: #888; text-decoration: none; font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; transition: all 0.3s ease; }
 nav a:hover { color: var(--primary-color); text-shadow: 0 0 8px rgba(255, 0, 51, 0.5); }
 nav a.active { color: var(--primary-color); border-bottom: 2px solid var(--primary-color); padding-bottom: 5px; }
 
-/* 滑动切换开关 (电脑端) */
 .lang-switch { position: absolute; right: 2rem; top: 50%; transform: translateY(-50%); display: flex; background: #111; border: 1px solid #333; border-radius: 20px; padding: 4px; width: 90px; height: 34px; box-sizing: border-box; }
 .lang-option { flex: 1; display: flex; justify-content: center; align-items: center; font-size: 0.8rem; font-family: sans-serif; font-weight: bold; border-radius: 15px; transition: all 0.3s ease; color: #666; user-select: none; }
 .lang-option.active { background: #fff; color: #000; box-shadow: 0 2px 8px rgba(255,255,255,0.2); }
 
-/* 首页排版 (电脑端) */
 .hero-section { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 6rem 2rem; flex: 1; width: 100%; }
 .hero-text { flex: 1; max-width: 600px; z-index: 2; }
 .tag { display: inline-block; color: #666; font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 2rem; text-transform: uppercase; }
@@ -35,7 +33,6 @@ nav a.active { color: var(--primary-color); border-bottom: 2px solid var(--prima
 .btn-secondary { color: #888; text-decoration: none; font-size: 1rem; border-bottom: 1px solid #333; padding-bottom: 2px; transition: all 0.3s; }
 .btn-secondary:hover { color: #fff; border-color: #fff; }
 
-/* 图片轮播 (电脑端) */
 .hero-visual { flex: 1; display: flex; justify-content: flex-end; position: relative; }
 .image-frame { width: 450px; height: 500px; position: relative; border-radius: 8px; overflow: hidden; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%), linear-gradient(to left, transparent 0%, black 15%); mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%), linear-gradient(to left, transparent 0%, black 15%); -webkit-mask-composite: source-in; mask-composite: intersect; }
 .slider { width: 100%; height: 100%; position: relative; }
@@ -47,7 +44,6 @@ nav a.active { color: var(--primary-color); border-bottom: 2px solid var(--prima
 .dot:hover { background-color: rgba(255, 255, 255, 0.5); }
 .dot.active { background-color: var(--primary-color); transform: scale(1.3); box-shadow: 0 0 10px var(--primary-color); }
 
-/* 内页通用 */
 .container { max-width: 1000px; margin: 4rem auto; padding: 0 1rem; flex: 1; width: 100%; }
 .container h1 { color: #fff; font-size: 3.5rem; margin-bottom: 3rem; text-align: center; font-weight: normal; font-style: italic; }
 .container h2 { color: var(--primary-color); margin-bottom: 0.8rem; font-size: 1.6rem; }
@@ -63,7 +59,6 @@ nav a.active { color: var(--primary-color); border-bottom: 2px solid var(--prima
 .more-artists-content { animation: fadeIn 0.5s ease-in-out; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* 心动模式 */
 .heartbeat-card { background: linear-gradient(145deg, #151515, #0a0a0a); border: 1px solid #222; border-left: 2px solid var(--primary-color); border-radius: 8px; padding: 4rem 2rem; max-width: 700px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
 .action-group { display: flex; justify-content: center; align-items: center; gap: 20px; }
 .main-btn { padding: 15px 40px; background: transparent; color: #fff; font-size: 1.1rem; border: 1px solid #fff; border-radius: 4px; transition: all 0.3s; letter-spacing: 2px; -webkit-appearance: none; outline: none; }
@@ -82,7 +77,7 @@ footer { text-align: center; padding: 3rem 0; color: #666; font-size: 0.9rem; ma
 footer span { color: var(--primary-color); }
 
 /* =========================================
-   👇 手机端终极修复（彻底解决重叠）
+   手机端专属优化
    ========================================= */
 @media (max-width: 900px) {
     .hero-section { flex-direction: column; padding: 4rem 1.5rem; text-align: center; gap: 2.5rem; }
@@ -96,12 +91,10 @@ footer span { color: var(--primary-color); }
 }
 
 @media (max-width: 600px) { 
-    /* 🚨 核心修复：导航栏改成上下两行，取消绝对定位 */
     nav { padding: 1.5rem 1rem; flex-direction: column; gap: 15px; } 
     .nav-links { gap: 12px; flex-wrap: wrap; justify-content: center; width: 100%; }
     nav a { font-size: 0.85rem; letter-spacing: 1px; }
     
-    /* 语言开关不再悬浮，而是乖乖呆在第二行居中 */
     .lang-switch { position: static; transform: none; margin: 5px auto 0 auto; width: 75px; height: 28px; padding: 3px; }
     .lang-option { font-size: 0.7rem; }
     

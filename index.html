@@ -31,7 +31,7 @@
                From the neon-lit streets of the 80s to the modern indie scene, this is my personal collection of the Cantopop songs that matter.
             </p>
             <div class="hero-actions">
-                <a href="song-picker.html" class="btn-primary" data-en="Explore Heartbeat Mode ↗" data-zh="探索心动模式 ↗">Explore Heartbeat Mode ↗</a>
+                <a href="song-picker.html" class="btn-primary" data-en="Explore Heartbeat Mode" data-zh="探索心动模式">Explore Heartbeat Mode</a>
                 <a href="artists.html" class="btn-secondary" data-en="About Artists" data-zh="关于歌手">About Artists</a>
             </div>
             <div style="margin-top: 3rem; font-size: 0.85rem; color: #555; letter-spacing: 1px;">
@@ -40,7 +40,8 @@
         </div>
         <div class="hero-visual">
             <div class="image-frame">
-                <div class="slider">
+                <!-- 加上了 id="slider-container" 用于监听触摸事件 -->
+                <div class="slider" id="slider-container">
                     <a href="song-picker.html">
                         <img src="1.jpg" class="slide active" alt="1">
                         <img src="2.jpg" class="slide" alt="2">
@@ -60,7 +61,9 @@
         </div>
     </main>
     <footer><p>Built with pure HTML, CSS & JS | <span>&copy; 2026 Cai Zhixuan</span></p></footer>
+    
     <script>
+        // --- 语言切换逻辑 ---
         let currentLang = localStorage.getItem('siteLang') || 'en';
         function updateLangBtn() {
             const enOption = document.getElementById('switch-en');
@@ -86,9 +89,12 @@
             applyLanguage(currentLang);
         });
 
+        // --- 轮播图基础逻辑 ---
         let currentSlideIndex = 0;
         const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.dot');
+        let autoPlayTimer;
+
         function changeSlide(index) {
             slides.forEach(s => s.classList.remove('active'));
             dots.forEach(d => d.classList.remove('active'));
@@ -96,10 +102,50 @@
             dots[index].classList.add('active');
             currentSlideIndex = index;
         }
-        setInterval(() => {
-            let nextIndex = (currentSlideIndex + 1) % slides.length;
-            changeSlide(nextIndex);
-        }, 3000);
+
+        // 自动播放与暂停机制
+        function startAutoPlay() {
+            autoPlayTimer = setInterval(() => {
+                let nextIndex = (currentSlideIndex + 1) % slides.length;
+                changeSlide(nextIndex);
+            }, 3000);
+        }
+        function stopAutoPlay() {
+            clearInterval(autoPlayTimer);
+        }
+        startAutoPlay();
+
+        // --- 手机端触摸滑动逻辑 (新增) ---
+        const sliderContainer = document.getElementById('slider-container');
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        // 手指按下时触发
+        sliderContainer.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            stopAutoPlay(); // 摸到图片时暂停自动轮播
+        }, {passive: true});
+
+        // 手指离开时触发
+        sliderContainer.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+            startAutoPlay(); // 手指离开后恢复轮播
+        }, {passive: true});
+
+        function handleSwipe() {
+            const swipeThreshold = 50; // 判定为滑动的像素距离
+            if (touchEndX < touchStartX - swipeThreshold) {
+                // 向左滑，切下一张
+                let nextIndex = (currentSlideIndex + 1) % slides.length;
+                changeSlide(nextIndex);
+            }
+            if (touchEndX > touchStartX + swipeThreshold) {
+                // 向右滑，切上一张
+                let prevIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+                changeSlide(prevIndex);
+            }
+        }
     </script>
 </body>
 </html>
