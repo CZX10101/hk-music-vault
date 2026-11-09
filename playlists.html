@@ -2,29 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Playlists - Echoes of Hong Kong</title><link rel="stylesheet" href="style.css">
+    <title>Playlists - Echoes of Hong Kong</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎵</text></svg>">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav>
-        <a href="index.html">Home</a>
-        <a href="artists.html">Artists</a>
-        <a href="playlists.html">Playlists</a>
-        <a href="song-picker.html">Song Picker</a>
+        <div class="nav-links">
+            <a href="index.html" data-en="Home" data-zh="首页">Home</a>
+            <a href="artists.html" data-en="Artists" data-zh="歌手">Artists</a>
+            <a href="playlists.html" class="active" data-en="Playlists" data-zh="歌单">Playlists</a>
+            <a href="song-picker.html" data-en="Heartbeat" data-zh="心动模式">Heartbeat</a>
+        </div>
+        <div id="lang-toggle" class="lang-switch">
+            <div id="switch-en" class="lang-option active">EN</div>
+            <div id="switch-zh" class="lang-option">中</div>
+        </div>
     </nav>
     <div class="container">
-        <h1>Curated Playlists</h1>
-        <div class="card">
-            <h2>Late Night Heartbreak (深夜心碎)</h2>
-            <p>Perfect for a rainy night. Includes "富士山下", "心淡", and "街灯晚餐".</p>
-        </div>
-        <div class="card">
-            <h2>Retro Golden Era (复古黄金时代)</h2>
-            <p>Get your neon vibes on with 80s synth-pop and classic disco. Featuring Leslie Cheung and Anita Mui.</p>
-        </div>
-        <div class="card">
-            <h2>Road Trip Energy (公路高燃)</h2>
-            <p>Guitar riffs and driving beats. Beyond and Dear Jane are on heavy rotation here.</p>
+        <h1 data-en="Curated Playlists" data-zh="精选歌单">Curated Playlists</h1>
+        <div class="playlist-grid">
+            <div class="playlist-card"><h2 data-en="Late Night Heartbreak" data-zh="深夜心碎">Late Night Heartbreak</h2><p data-en="Perfect for a rainy night. Includes &quot;Under Mount Fuji&quot;, &quot;Fading Heart&quot;, and &quot;Dinner Under Streetlights&quot;." data-zh="适合雨夜的完美伴侣。包含《富士山下》、《心淡》和《街灯晚餐》。">Perfect for a rainy night. Includes "Under Mount Fuji", "Fading Heart", and "Dinner Under Streetlights".</p></div>
+            <div class="playlist-card"><h2 data-en="Retro Classic" data-zh="复古经典">Retro Classic</h2><p data-en="Experience the peak of Cantopop with Eason Chan, Miriam Yeung, and Janice Vidal. This playlist takes you back to the golden days of classic melodies." data-zh="与陈奕迅、杨千嬅、卫兰一起感受粤语流行乐的巅峰时刻。这份歌单带你重回经典旋律的黄金年代。">Experience the peak of Cantopop with Eason Chan, Miriam Yeung, and Janice Vidal. This playlist takes you back to the golden days of classic melodies.</p></div>
+            <div class="playlist-card"><h2 data-en="Road Trip Energy" data-zh="公路高燃">Road Trip Energy</h2><p data-en="Guitar riffs and driving beats. Dear Jane and Pakho Chau are on heavy rotation here." data-zh="吉他连复段与动感节拍。Dear Jane 与周柏豪在这里循环播放。">Guitar riffs and driving beats. Dear Jane and Pakho Chau are on heavy rotation here.</p></div>
+            <div class="playlist-card"><h2 data-en="Vocal Masterclass" data-zh="唱功天花板">Vocal Masterclass</h2><p data-en="For those who appreciate pure vocal power. Hins Cheung, Joey Yung, and Gin Lee." data-zh="献给懂得欣赏纯粹唱功的人。张敬轩、容祖儿、李幸倪。">For those who appreciate pure vocal power. Hins Cheung, Joey Yung, and Gin Lee.</p></div>
         </div>
     </div>
+    <footer><p>Built with pure HTML, CSS & JS | <span>&copy; 2026 Cai Zhixuan</span></p></footer>
+    <script>
+        let currentLang = localStorage.getItem('siteLang') || 'en';
+        function updateLangBtn() {
+            const enOption = document.getElementById('switch-en');
+            const zhOption = document.getElementById('switch-zh');
+            if (currentLang === 'en') {
+                enOption.classList.add('active');
+                zhOption.classList.remove('active');
+            } else {
+                enOption.classList.remove('active');
+                zhOption.classList.add('active');
+            }
+        }
+        function applyLanguage(lang) {
+            document.querySelectorAll('[data-en][data-zh]').forEach(el => {
+                el.innerHTML = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-zh');
+            });
+            updateLangBtn();
+        }
+        applyLanguage(currentLang);
+        document.getElementById('lang-toggle').addEventListener('click', () => {
+            currentLang = currentLang === 'en' ? 'zh' : 'en';
+            localStorage.setItem('siteLang', currentLang);
+            applyLanguage(currentLang);
+        });
+    </script>
 </body>
 </html>

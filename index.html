@@ -2,23 +2,111 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Echoes of Hong Kong</title><link rel="stylesheet" href="style.css">
+    <title>Echoes of Hong Kong</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎵</text></svg>">
+    <meta name="description" content="Echoes of Hong Kong - A personal vault for classic and modern Cantopop.">
+    <meta name="theme-color" content="#0a0a0a">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav>
-        <a href="index.html">Home</a>
-        <a href="artists.html">Artists</a>
-        <a href="playlists.html">Playlists</a>
-        <a href="song-picker.html">Song Picker</a>
-    </nav>
-    <div class="container">
-        <h1>Echoes of Hong Kong</h1>
-        <div class="card">
-            <h2>The Golden Era & Beyond</h2>
-            <p>Music is a time machine. Cantopop has defined the soundscape of Hong Kong for decades. From the neon-lit streets of the 80s to the modern indie scene, this is my personal collection of the songs that matter.</p>
-            <br>
-            <p>Explore legendary artists, curated playlists for your mood, and let the machine pick your next favorite song.</p>
+        <div class="nav-links">
+            <a href="index.html" class="active" data-en="Home" data-zh="首页">Home</a>
+            <a href="artists.html" data-en="Artists" data-zh="歌手">Artists</a>
+            <a href="playlists.html" data-en="Playlists" data-zh="歌单">Playlists</a>
+            <a href="song-picker.html" data-en="Heartbeat" data-zh="心动模式">Heartbeat</a>
         </div>
-    </div>
+        <div id="lang-toggle" class="lang-switch">
+            <div id="switch-en" class="lang-option active">EN</div>
+            <div id="switch-zh" class="lang-option">中</div>
+        </div>
+    </nav>
+    <main class="hero-section">
+        <div class="hero-text">
+            <span class="tag">Cantopop / Vault</span>
+            <h1 data-en="Echoes of<br>Hong Kong" data-zh="港乐<br>回响">Echoes of<br>Hong Kong</h1>
+            <h2 class="subtitle" data-en="Music is a time machine" data-zh="音乐是时光机">Music is a time machine</h2>
+            <p data-en="From the neon-lit streets of the 80s to the modern indie scene, this is my personal collection of the Cantopop songs that matter."
+               data-zh="从八十年代霓虹闪烁的街头，到现代独立音乐圈，这是我最私人的粤语珍藏歌单。">
+               From the neon-lit streets of the 80s to the modern indie scene, this is my personal collection of the Cantopop songs that matter.
+            </p>
+            <div class="hero-actions">
+                <a href="song-picker.html" class="btn-primary" data-en="Explore Heartbeat Mode ↗" data-zh="探索心动模式 ↗">Explore Heartbeat Mode ↗</a>
+                <a href="artists.html" class="btn-secondary" data-en="About Artists" data-zh="关于歌手">About Artists</a>
+            </div>
+            <!-- 新增：底下的一行极简注释，让截图更饱满 -->
+            <div style="margin-top: 4rem; font-size: 0.85rem; color: #555; letter-spacing: 1px;">
+                <span data-en="Curated by a Cantopop lover. Built week by week." data-zh="由港乐爱好者精选。每周持续更新。">Curated by a Cantopop lover. Built week by week.</span>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="image-frame">
+                <div class="slider">
+                    <a href="song-picker.html">
+                        <img src="1.jpg" class="slide active" alt="1">
+                        <img src="2.jpg" class="slide" alt="2">
+                        <img src="3.jpg" class="slide" alt="3">
+                        <img src="4.jpg" class="slide" alt="4">
+                        <img src="5.jpg" class="slide" alt="5">
+                    </a>
+                </div>
+                <div class="dots-container">
+                    <span class="dot active" onmouseenter="changeSlide(0)"></span>
+                    <span class="dot" onmouseenter="changeSlide(1)"></span>
+                    <span class="dot" onmouseenter="changeSlide(2)"></span>
+                    <span class="dot" onmouseenter="changeSlide(3)"></span>
+                    <span class="dot" onmouseenter="changeSlide(4)"></span>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer><p>Built with pure HTML, CSS & JS | <span>&copy; 2026 Cai Zhixuan</span></p></footer>
+    <script>
+        let currentLang = localStorage.getItem('siteLang') || 'en';
+        
+        function updateLangBtn() {
+            const enOption = document.getElementById('switch-en');
+            const zhOption = document.getElementById('switch-zh');
+            if (currentLang === 'en') {
+                enOption.classList.add('active');
+                zhOption.classList.remove('active');
+            } else {
+                enOption.classList.remove('active');
+                zhOption.classList.add('active');
+            }
+        }
+
+        function applyLanguage(lang) {
+            document.querySelectorAll('[data-en][data-zh]').forEach(el => {
+                el.innerHTML = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-zh');
+            });
+            updateLangBtn();
+        }
+        
+        applyLanguage(currentLang);
+        
+        document.getElementById('lang-toggle').addEventListener('click', () => {
+            currentLang = currentLang === 'en' ? 'zh' : 'en';
+            localStorage.setItem('siteLang', currentLang);
+            applyLanguage(currentLang);
+        });
+
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        
+        function changeSlide(index) {
+            slides.forEach(s => s.classList.remove('active'));
+            dots.forEach(d => d.classList.remove('active'));
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+            currentSlideIndex = index;
+        }
+        
+        setInterval(() => {
+            let nextIndex = (currentSlideIndex + 1) % slides.length;
+            changeSlide(nextIndex);
+        }, 3000);
+    </script>
 </body>
 </html>

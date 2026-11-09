@@ -2,65 +2,135 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Song Picker - Echoes of Hong Kong</title><link rel="stylesheet" href="style.css">
+    <title>Heartbeat Mode - Echoes of Hong Kong</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎵</text></svg>">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav>
-        <a href="index.html">Home</a>
-        <a href="artists.html">Artists</a>
-        <a href="playlists.html">Playlists</a>
-        <a href="song-picker.html">Song Picker</a>
+        <div class="nav-links">
+            <a href="index.html" data-en="Home" data-zh="首页">Home</a>
+            <a href="artists.html" data-en="Artists" data-zh="歌手">Artists</a>
+            <a href="playlists.html" data-en="Playlists" data-zh="歌单">Playlists</a>
+            <a href="song-picker.html" class="active" data-en="Heartbeat" data-zh="心动模式">Heartbeat</a>
+        </div>
+        <div id="lang-toggle" class="lang-switch">
+            <div id="switch-en" class="lang-option active">EN</div>
+            <div id="switch-zh" class="lang-option">中</div>
+        </div>
     </nav>
     <div class="container">
-        <h1>Random Song Picker</h1>
-        <div class="card" style="text-align: center;">
-            <h2>Let the machine decide.</h2>
-            <div id="song-display" style="margin: 40px 0; font-size: 1.8rem; color: #fff; min-height: 80px;">
-                Click the button below.
+        <h1 data-en="Heartbeat Mode" data-zh="心动模式">Heartbeat Mode</h1>
+        
+        <div class="heartbeat-card" style="text-align: center;">
+            <h2 data-en="Let the vinyl decide" data-zh="让黑胶替你决定">Let the vinyl decide</h2>
+            
+            <div class="vinyl-container">
+                <div class="vinyl"></div>
             </div>
-            <button onclick="pickSong()">Pick a Song</button>
+
+            <!-- 固定高度的显示区域 -->
+            <div id="song-display">
+                <!-- 初始状态不显示任何歌名 -->
+            </div>
+            
+            <div class="action-group">
+                <!-- 彻底去掉了爱心的按钮 -->
+                <button id="action-btn" class="main-btn" onclick="pickSong()" data-en="Flip Side" data-zh="翻面">Flip Side</button>
+                <button id="exit-btn" class="exit-btn" onclick="exitHeartbeatMode()" style="display: none;" data-en="Stop" data-zh="停播">Stop</button>
+            </div>
         </div>
     </div>
+    <footer><p>Built with pure HTML, CSS & JS | <span>&copy; 2026 Cai Zhixuan</span></p></footer>
+    
     <script>
+        let currentLang = localStorage.getItem('siteLang') || 'en';
+        function updateLangBtn() {
+            const enOption = document.getElementById('switch-en');
+            const zhOption = document.getElementById('switch-zh');
+            if (currentLang === 'en') {
+                enOption.classList.add('active');
+                zhOption.classList.remove('active');
+            } else {
+                enOption.classList.remove('active');
+                zhOption.classList.add('active');
+            }
+        }
+        function applyLanguage(lang) {
+            document.querySelectorAll('[data-en][data-zh]').forEach(el => {
+                el.innerHTML = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-zh');
+            });
+            updateLangBtn();
+        }
+        applyLanguage(currentLang);
+        document.getElementById('lang-toggle').addEventListener('click', () => {
+            currentLang = currentLang === 'en' ? 'zh' : 'en';
+            localStorage.setItem('siteLang', currentLang);
+            applyLanguage(currentLang);
+        });
+
         const songs = [
-            // 陈奕迅
             { title: "富士山下", artist: "陈奕迅" }, { title: "陀飞轮", artist: "陈奕迅" }, { title: "十年", artist: "陈奕迅" }, { title: "浮夸", artist: "陈奕迅" }, { title: "K歌之王", artist: "陈奕迅" },
-            // 张敬轩
             { title: "樱花树下", artist: "张敬轩" }, { title: "青春常驻", artist: "张敬轩" }, { title: "断点", artist: "张敬轩" }, { title: "酷爱", artist: "张敬轩" }, { title: "我的天", artist: "张敬轩" },
-            // 周柏豪
             { title: "够钟", artist: "周柏豪" }, { title: "传闻", artist: "周柏豪" }, { title: "一事无成", artist: "周柏豪" }, { title: "还记得", artist: "周柏豪" }, { title: "小白", artist: "周柏豪" },
-            // Dear Jane
             { title: "哪里只得我共你", artist: "Dear Jane" }, { title: "不许你注定一人", artist: "Dear Jane" }, { title: "经过一些秋与冬", artist: "Dear Jane" }, { title: "到底发生过什么事", artist: "Dear Jane" }, { title: "人类不宜飞行", artist: "Dear Jane" },
-            // 杨千嬅
             { title: "可惜我是水瓶座", artist: "杨千嬅" }, { title: "少女的祈祷", artist: "杨千嬅" }, { title: "处处吻", artist: "杨千嬅" }, { title: "再见二丁目", artist: "杨千嬅" }, { title: "野孩子", artist: "杨千嬅" },
-            // 容祖儿
             { title: "连续剧", artist: "容祖儿" }, { title: "续集", artist: "容祖儿" }, { title: "怯", artist: "容祖儿" }, { title: "心淡", artist: "容祖儿" }, { title: "心之科学", artist: "容祖儿" },
-            // 侧田
             { title: "命硬", artist: "侧田" }, { title: "好人", artist: "侧田" }, { title: "男人KTV", artist: "侧田" }, { title: "Kong", artist: "侧田" }, { title: "情歌", artist: "侧田" },
-            // 卫兰
             { title: "大哥", artist: "卫兰" }, { title: "离家出走", artist: "卫兰" }, { title: "就算世界无童话", artist: "卫兰" }, { title: "街灯晚餐", artist: "卫兰" }, { title: "心乱如麻", artist: "卫兰" },
-            // 陈小春
             { title: "相依为命", artist: "陈小春" }, { title: "乱世巨星", artist: "陈小春" }, { title: "献世", artist: "陈小春" }, { title: "没那种命", artist: "陈小春" }, { title: "算你狠", artist: "陈小春" },
-            // 谢安琪
             { title: "喜帖街", artist: "谢安琪" }, { title: "钟无艳", artist: "谢安琪" }, { title: "罗生门", artist: "谢安琪" }, { title: "年度之歌", artist: "谢安琪" }, { title: "山林道", artist: "谢安琪" },
-            // 官恩娜
             { title: "地平线", artist: "官恩娜" }, { title: "暗恋", artist: "官恩娜" }, { title: "戏中有气", artist: "官恩娜" }, { title: "千帆", artist: "官恩娜" }, { title: "珊瑚岛", artist: "官恩娜" },
-            // 林峯
             { title: "爱不疚", artist: "林峯" }, { title: "幼稚未完", artist: "林峯" }, { title: "换个方式爱你", artist: "林峯" }, { title: "Chok", artist: "林峯" }, { title: "记得忘记", artist: "林峯" },
-            // 钟嘉欣
             { title: "发誓", artist: "钟嘉欣" }, { title: "最幸福的事", artist: "钟嘉欣" }, { title: "其实我不快乐", artist: "钟嘉欣" }, { title: "预防针", artist: "钟嘉欣" }, { title: "你是我心内的一首歌", artist: "钟嘉欣" },
-            // 李幸倪
             { title: "双双", artist: "李幸倪" }, { title: "很坚强", artist: "李幸倪" }, { title: "日出时让街灯安睡", artist: "李幸倪" }, { title: "好不容易", artist: "李幸倪" }, { title: "芝麻开门", artist: "李幸倪" },
-            // AGA
             { title: "3AM", artist: "AGA" }, { title: "孤雏", artist: "AGA" }, { title: "Wonderful U", artist: "AGA" }, { title: "圆", artist: "AGA" }, { title: "一", artist: "AGA" },
-            // 连诗雅
             { title: "到此为止", artist: "连诗雅" }, { title: "说一句", artist: "连诗雅" }, { title: "旧街角", artist: "连诗雅" }, { title: "水星逆行", artist: "连诗雅" }, { title: "只要和你在一起", artist: "连诗雅" }
         ];
 
         function pickSong() {
             const randomIndex = Math.floor(Math.random() * songs.length);
             const song = songs[randomIndex];
-            document.getElementById('song-display').innerHTML = `<span style="color:var(--primary-color);">${song.title}</span><br><span style="font-size:1.2rem; color:#888;">- ${song.artist}</span>`;
+            
+            const display = document.getElementById('song-display');
+            display.style.opacity = 0;
+            setTimeout(() => {
+                display.innerHTML = `<span style="color:var(--primary-color); font-style: italic;">${song.title}</span><br><span style="font-size:1.2rem; color:#888; font-family: sans-serif;">${song.artist}</span>`;
+                display.style.opacity = 1;
+            }, 150);
+            
+            document.querySelector('.vinyl').classList.add('playing');
+
+            const actionBtn = document.getElementById('action-btn');
+            if (currentLang === 'zh') {
+                actionBtn.innerHTML = "再翻一面";
+                actionBtn.setAttribute('data-zh', "再翻一面");
+            } else {
+                actionBtn.innerHTML = "Flip Again";
+                actionBtn.setAttribute('data-en', "Flip Again");
+            }
+            document.getElementById('exit-btn').style.display = 'inline-block';
+        }
+
+        function exitHeartbeatMode() {
+            const display = document.getElementById('song-display');
+            display.style.opacity = 0;
+            setTimeout(() => {
+                display.innerHTML = "";
+                display.style.opacity = 1;
+            }, 150);
+
+            document.querySelector('.vinyl').classList.remove('playing');
+            
+            const actionBtn = document.getElementById('action-btn');
+            if (currentLang === 'zh') {
+                actionBtn.innerHTML = "翻面";
+                actionBtn.setAttribute('data-zh', "翻面");
+            } else {
+                actionBtn.innerHTML = "Flip Side";
+                actionBtn.setAttribute('data-en', "Flip Side");
+            }
+            document.getElementById('exit-btn').style.display = 'none';
         }
     </script>
 </body>

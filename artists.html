@@ -2,82 +2,93 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artists - Echoes of Hong Kong</title><link rel="stylesheet" href="style.css">
+    <title>Artists - Echoes of Hong Kong</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎵</text></svg>">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav>
-        <a href="index.html">Home</a>
-        <a href="artists.html">Artists</a>
-        <a href="playlists.html">Playlists</a>
-        <a href="song-picker.html">Song Picker</a>
+        <div class="nav-links">
+            <a href="index.html" data-en="Home" data-zh="首页">Home</a>
+            <a href="artists.html" class="active" data-en="Artists" data-zh="歌手">Artists</a>
+            <a href="playlists.html" data-en="Playlists" data-zh="歌单">Playlists</a>
+            <a href="song-picker.html" data-en="Heartbeat" data-zh="心动模式">Heartbeat</a>
+        </div>
+        <div id="lang-toggle" class="lang-switch">
+            <div id="switch-en" class="lang-option active">EN</div>
+            <div id="switch-zh" class="lang-option">中</div>
+        </div>
     </nav>
     <div class="container">
-        <h1>Legendary Artists</h1>
+        <h1 data-en="Legendary Artists" data-zh="传奇歌手">Legendary Artists</h1>
         
-        <div class="card">
-            <h2>陈奕迅 (Eason Chan)</h2>
-            <p>Must listen: "富士山下", "陀飞轮", "十年", "浮夸", "K歌之王".</p>
+        <div class="card"><h2 data-en="Eason Chan" data-zh="陈奕迅">Eason Chan</h2><p data-en="Must listen: &quot;Under Mount Fuji&quot;, &quot;Tourbillon&quot;, &quot;Ten Years&quot;, &quot;Exaggerated&quot;, &quot;King of Karaoke&quot; ..." data-zh="必听: &quot;富士山下&quot;, &quot;陀飞轮&quot;, &quot;十年&quot;, &quot;浮夸&quot;, &quot;K歌之王&quot; ...">Must listen: "富士山下", "陀飞轮", "十年", "浮夸", "K歌之王" ...</p></div>
+        <div class="card"><h2 data-en="Hins Cheung" data-zh="张敬轩">Hins Cheung</h2><p data-en="Must listen: &quot;Under the Cherry Blossoms&quot;, &quot;Youthful Forever&quot;, &quot;Breakpoint&quot;, &quot;Crazy Love&quot;, &quot;My Sky&quot; ..." data-zh="必听: &quot;樱花树下&quot;, &quot;青春常驻&quot;, &quot;断点&quot;, &quot;酷爱&quot;, &quot;我的天&quot; ...">Must listen: "樱花树下", "青春常驻", "断点", "酷爱", "我的天" ...</p></div>
+        <div class="card"><h2 data-en="Pakho Chau" data-zh="周柏豪">Pakho Chau</h2><p data-en="Must listen: &quot;Enough Time&quot;, &quot;Rumors&quot;, &quot;Nothing Accomplished&quot;, &quot;Still Remember&quot;, &quot;Little White&quot; ..." data-zh="必听: &quot;够钟&quot;, &quot;传闻&quot;, &quot;一事无成&quot;, &quot;还记得&quot;, &quot;小白&quot; ...">Must listen: "够钟", "传闻", "一事无成", "还记得", "小白" ...</p></div>
+        <div class="card"><h2 data-en="Dear Jane" data-zh="Dear Jane">Dear Jane</h2><p data-en="Must listen: &quot;Nowhere Else But With You&quot;, &quot;Not Allowed To Be Alone&quot;, &quot;After Autumn and Winter&quot;, &quot;What Actually Happened&quot;, &quot;Humans Should Not Fly&quot; ..." data-zh="必听: &quot;哪里只得我共你&quot;, &quot;不许你注定一人&quot;, &quot;经过一些秋与冬&quot;, &quot;到底发生过什么事&quot;, &quot;人类不宜飞行&quot; ...">Must listen: "哪里只得我共你", "不许你注定一人", "经过一些秋与冬", "到底发生过什么事", "人类不宜飞行" ...</p></div>
+
+        <div id="load-more-btn" class="load-more-trigger" onclick="toggleMoreArtists()">
+            <span data-en="Show more artists ↓" data-zh="查看更多歌手 ↓">Show more artists ↓</span>
         </div>
-        <div class="card">
-            <h2>张敬轩 (Hins Cheung)</h2>
-            <p>Must listen: "樱花树下", "青春常驻", "断点", "酷爱", "我的天".</p>
-        </div>
-        <div class="card">
-            <h2>周柏豪 (Pakho Chau)</h2>
-            <p>Must listen: "够钟", "传闻", "一事无成", "还记得", "小白".</p>
-        </div>
-        <div class="card">
-            <h2>Dear Jane</h2>
-            <p>Must listen: "哪里只得我共你", "不许你注定一人", "经过一些秋与冬", "到底发生过什么事", "人类不宜飞行".</p>
-        </div>
-        <div class="card">
-            <h2>杨千嬅 (Miriam Yeung)</h2>
-            <p>Must listen: "可惜我是水瓶座", "少女的祈祷", "处处吻", "再见二丁目", "野孩子".</p>
-        </div>
-        <div class="card">
-            <h2>容祖儿 (Joey Yung)</h2>
-            <p>Must listen: "连续剧", "续集", "怯", "心淡", "心之科学".</p>
-        </div>
-        <div class="card">
-            <h2>侧田 (Justin Lo)</h2>
-            <p>Must listen: "命硬", "好人", "男人KTV", "Kong", "情歌".</p>
-        </div>
-        <div class="card">
-            <h2>卫兰 (Janice Vidal)</h2>
-            <p>Must listen: "大哥", "离家出走", "就算世界无童话", "街灯晚餐", "心乱如麻".</p>
-        </div>
-        <div class="card">
-            <h2>陈小春 (Jordan Chan)</h2>
-            <p>Must listen: "相依为命", "乱世巨星", "献世", "没那种命", "算你狠".</p>
-        </div>
-        <div class="card">
-            <h2>谢安琪 (Kay Tse)</h2>
-            <p>Must listen: "喜帖街", "钟无艳", "罗生门", "年度之歌", "山林道".</p>
-        </div>
-        <div class="card">
-            <h2>官恩娜 (Ella Koon)</h2>
-            <p>Must listen: "地平线", "暗恋", "戏中有气", "千帆", "珊瑚岛".</p>
-        </div>
-        <div class="card">
-            <h2>林峯 (Raymond Lam)</h2>
-            <p>Must listen: "爱不疚", "幼稚未完", "换个方式爱你", "Chok", "记得忘记".</p>
-        </div>
-        <div class="card">
-            <h2>钟嘉欣 (Linda Chung)</h2>
-            <p>Must listen: "发誓", "最幸福的事", "其实我不快乐", "预防针", "你是我心内的一首歌".</p>
-        </div>
-        <div class="card">
-            <h2>李幸倪 (Gin Lee)</h2>
-            <p>Must listen: "双双", "很坚强", "日出时让街灯安睡", "好不容易", "芝麻开门".</p>
-        </div>
-        <div class="card">
-            <h2>AGA (江海迦)</h2>
-            <p>Must listen: "3AM", "孤雏", "Wonderful U", "圆", "一".</p>
-        </div>
-        <div class="card">
-            <h2>连诗雅 (Shiga Lin)</h2>
-            <p>Must listen: "到此为止", "说一句", "旧街角", "水星逆行", "只要和你在一起".</p>
+
+        <div id="more-artists-container" class="more-artists-content" style="display: none;">
+            <div class="card"><h2 data-en="Miriam Yeung" data-zh="杨千嬅">Miriam Yeung</h2><p data-en="Must listen: &quot;Aquarius&quot;, &quot;Girl's Prayer&quot;, &quot;Kisses Everywhere&quot;, &quot;Goodbye Yau Ma Tei&quot;, &quot;Wild Child&quot; ..." data-zh="必听: &quot;可惜我是水瓶座&quot;, &quot;少女的祈祷&quot;, &quot;处处吻&quot;, &quot;再见二丁目&quot;, &quot;野孩子&quot; ...">Must listen: "可惜我是水瓶座", "少女的祈祷", "处处吻", "再见二丁目", "野孩子" ...</p></div>
+            <div class="card"><h2 data-en="Joey Yung" data-zh="容祖儿">Joey Yung</h2><p data-en="Must listen: &quot;Serial Drama&quot;, &quot;Sequel&quot;, &quot;Timid&quot;, &quot;Fading Heart&quot;, &quot;Science of the Heart&quot; ..." data-zh="必听: &quot;连续剧&quot;, &quot;续集&quot;, &quot;怯&quot;, &quot;心淡&quot;, &quot;心之科学&quot; ...">Must listen: "连续剧", "续集", "怯", "心淡", "心之科学" ...</p></div>
+            <div class="card"><h2 data-en="Justin Lo" data-zh="侧田">Justin Lo</h2><p data-en="Must listen: &quot;Tough Life&quot;, &quot;Good Guy&quot;, &quot;Men's KTV&quot;, &quot;Kong&quot;, &quot;Love Song&quot; ..." data-zh="必听: &quot;命硬&quot;, &quot;好人&quot;, &quot;男人KTV&quot;, &quot;Kong&quot;, &quot;情歌&quot; ...">Must listen: "命硬", "好人", "男人KTV", "Kong", "情歌" ...</p></div>
+            <div class="card"><h2 data-en="Janice Vidal" data-zh="卫兰">Janice Vidal</h2><p data-en="Must listen: &quot;Big Brother&quot;, &quot;Run Away&quot;, &quot;Even If the World Has No Fairy Tales&quot;, &quot;Dinner Under Streetlights&quot;, &quot;Messy Heart&quot; ..." data-zh="必听: &quot;大哥&quot;, &quot;离家出走&quot;, &quot;就算世界无童话&quot;, &quot;街灯晚餐&quot;, &quot;心乱如麻&quot; ...">Must listen: "大哥", "离家出走", "就算世界无童话", "街灯晚餐", "心乱如麻" ...</p></div>
+            <div class="card"><h2 data-en="Jordan Chan" data-zh="陈小春">Jordan Chan</h2><p data-en="Must listen: &quot;Dependent on Each Other&quot;, &quot;Superstar of Chaos&quot;, &quot;Dedication&quot;, &quot;Not That Kind of Fate&quot;, &quot;You Are Ruthless&quot; ..." data-zh="必听: &quot;相依为命&quot;, &quot;乱世巨星&quot;, &quot;献世&quot;, &quot;没那种命&quot;, &quot;算你狠&quot; ...">Must listen: "相依为命", "乱世巨星", "献世", "没那种命", "算你狠" ...</p></div>
+            <div class="card"><h2 data-en="Kay Tse" data-zh="谢安琪">Kay Tse</h2><p data-en="Must listen: &quot;Wedding Invitation Street&quot;, &quot;Zhong Wu Yan&quot;, &quot;Rashomon&quot;, &quot;Song of the Year&quot;, &quot;Mountain Forest Road&quot; ..." data-zh="必听: &quot;喜帖街&quot;, &quot;钟无艳&quot;, &quot;罗生门&quot;, &quot;年度之歌&quot;, &quot;山林道&quot; ...">Must listen: "喜帖街", "钟无艳", "罗生门", "年度之歌", "山林道" ...</p></div>
+            <div class="card"><h2 data-en="Ella Koon" data-zh="官恩娜">Ella Koon</h2><p data-en="Must listen: &quot;Horizon&quot;, &quot;Secret Crush&quot;, &quot;Drama in the Air&quot;, &quot;Thousand Sails&quot;, &quot;Coral Island&quot; ..." data-zh="必听: &quot;地平线&quot;, &quot;暗恋&quot;, &quot;戏中有气&quot;, &quot;千帆&quot;, &quot;珊瑚岛&quot; ...">Must listen: "地平线", "暗恋", "戏中有气", "千帆", "珊瑚岛" ...</p></div>
+            <div class="card"><h2 data-en="Raymond Lam" data-zh="林峯">Raymond Lam</h2><p data-en="Must listen: &quot;Love Without Guilt&quot;, &quot;Unfinished Childhood&quot;, &quot;Love You Differently&quot;, &quot;Chok&quot;, &quot;Remember to Forget&quot; ..." data-zh="必听: &quot;爱不疚&quot;, &quot;幼稚未完&quot;, &quot;换个方式爱你&quot;, &quot;Chok&quot;, &quot;记得忘记&quot; ...">Must listen: "爱不疚", "幼稚未完", "换个方式爱你", "Chok", "记得忘记" ...</p></div>
+            <div class="card"><h2 data-en="Linda Chung" data-zh="钟嘉欣">Linda Chung</h2><p data-en="Must listen: &quot;Swear&quot;, &quot;The Happiest Thing&quot;, &quot;Actually I'm Not Happy&quot;, &quot;Vaccine&quot;, &quot;A Song in My Heart&quot; ..." data-zh="必听: &quot;发誓&quot;, &quot;最幸福的事&quot;, &quot;其实我不快乐&quot;, &quot;预防针&quot;, &quot;你是我心内的一首歌&quot; ...">Must listen: "发誓", "最幸福的事", "其实我不快乐", "预防针", "你是我心内的一首歌" ...</p></div>
+            <div class="card"><h2 data-en="Gin Lee" data-zh="李幸倪">Gin Lee</h2><p data-en="Must listen: &quot;Double&quot;, &quot;Strong&quot;, &quot;Let the Streetlights Sleep at Sunrise&quot;, &quot;Not Easy&quot;, &quot;Open Sesame&quot; ..." data-zh="必听: &quot;双双&quot;, &quot;很坚强&quot;, &quot;日出时让街灯安睡&quot;, &quot;好不容易&quot;, &quot;芝麻开门&quot; ...">Must listen: "双双", "很坚强", "日出时让街灯安睡", "好不容易", "芝麻开门" ...</p></div>
+            <div class="card"><h2 data-en="AGA" data-zh="AGA">AGA</h2><p data-en="Must listen: &quot;3AM&quot;, &quot;Lone Chick&quot;, &quot;Wonderful U&quot;, &quot;Circle&quot;, &quot;One&quot; ..." data-zh="必听: &quot;3AM&quot;, &quot;孤雏&quot;, &quot;Wonderful U&quot;, &quot;圆&quot;, &quot;一&quot; ...">Must listen: "3AM", "孤雏", "Wonderful U", "圆", "一" ...</p></div>
+            <div class="card"><h2 data-en="Shiga Lin" data-zh="连诗雅">Shiga Lin</h2><p data-en="Must listen: &quot;Stop Here&quot;, &quot;Say a Word&quot;, &quot;Old Street Corner&quot;, &quot;Mercury Retrograde&quot;, &quot;As Long As I'm With You&quot; ..." data-zh="必听: &quot;到此为止&quot;, &quot;说一句&quot;, &quot;旧街角&quot;, &quot;水星逆行&quot;, &quot;只要和你在一起&quot; ...">Must listen: "到此为止", "说一句", "旧街角", "水星逆行", "只要和你在一起" ...</p></div>
+            
+            <div class="load-more-trigger" onclick="toggleMoreArtists()">
+                <span data-en="Show less ↑" data-zh="收起列表 ↑">Show less ↑</span>
+            </div>
         </div>
     </div>
+    <footer><p>Built with pure HTML, CSS & JS | <span>&copy; 2026 Cai Zhixuan</span></p></footer>
+    <script>
+        let currentLang = localStorage.getItem('siteLang') || 'en';
+        function updateLangBtn() {
+            const enOption = document.getElementById('switch-en');
+            const zhOption = document.getElementById('switch-zh');
+            if (currentLang === 'en') {
+                enOption.classList.add('active');
+                zhOption.classList.remove('active');
+            } else {
+                enOption.classList.remove('active');
+                zhOption.classList.add('active');
+            }
+        }
+        function applyLanguage(lang) {
+            document.querySelectorAll('[data-en][data-zh]').forEach(el => {
+                el.innerHTML = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-zh');
+            });
+            updateLangBtn();
+        }
+        applyLanguage(currentLang);
+        document.getElementById('lang-toggle').addEventListener('click', () => {
+            currentLang = currentLang === 'en' ? 'zh' : 'en';
+            localStorage.setItem('siteLang', currentLang);
+            applyLanguage(currentLang);
+        });
+
+        function toggleMoreArtists() {
+            const container = document.getElementById('more-artists-container');
+            const topBtn = document.getElementById('load-more-btn');
+            if (container.style.display === 'none') {
+                container.style.display = 'block';
+                topBtn.style.display = 'none';
+            } else {
+                container.style.display = 'none';
+                topBtn.style.display = 'block';
+                topBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+    </script>
 </body>
 </html>
