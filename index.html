@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Echoes of Hong Kong</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎵</text></svg>">
+    <!-- 替换成了你本地的 app.png -->
+    <link rel="icon" href="app.png" type="image/png">
+    <link rel="apple-touch-icon" href="app.png">
     <meta name="description" content="Echoes of Hong Kong - A personal vault for classic and modern Cantopop.">
     <meta name="theme-color" content="#0a0a0a">
     <link rel="stylesheet" href="style.css">
@@ -40,7 +42,6 @@
         </div>
         <div class="hero-visual">
             <div class="image-frame">
-                <!-- 加上了 id="slider-container" 用于监听触摸事件 -->
                 <div class="slider" id="slider-container">
                     <a href="song-picker.html">
                         <img src="1.jpg" class="slide active" alt="1">
@@ -63,7 +64,6 @@
     <footer><p>Built with pure HTML, CSS & JS | <span>&copy; 2026 Cai Zhixuan</span></p></footer>
     
     <script>
-        // --- 语言切换逻辑 ---
         let currentLang = localStorage.getItem('siteLang') || 'en';
         function updateLangBtn() {
             const enOption = document.getElementById('switch-en');
@@ -89,7 +89,6 @@
             applyLanguage(currentLang);
         });
 
-        // --- 轮播图基础逻辑 ---
         let currentSlideIndex = 0;
         const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.dot');
@@ -102,8 +101,6 @@
             dots[index].classList.add('active');
             currentSlideIndex = index;
         }
-
-        // 自动播放与暂停机制
         function startAutoPlay() {
             autoPlayTimer = setInterval(() => {
                 let nextIndex = (currentSlideIndex + 1) % slides.length;
@@ -115,33 +112,28 @@
         }
         startAutoPlay();
 
-        // --- 手机端触摸滑动逻辑 (新增) ---
         const sliderContainer = document.getElementById('slider-container');
         let touchStartX = 0;
         let touchEndX = 0;
 
-        // 手指按下时触发
         sliderContainer.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
-            stopAutoPlay(); // 摸到图片时暂停自动轮播
+            stopAutoPlay();
         }, {passive: true});
 
-        // 手指离开时触发
         sliderContainer.addEventListener('touchend', (e) => {
             touchEndX = e.changedTouches[0].screenX;
             handleSwipe();
-            startAutoPlay(); // 手指离开后恢复轮播
+            startAutoPlay();
         }, {passive: true});
 
         function handleSwipe() {
-            const swipeThreshold = 50; // 判定为滑动的像素距离
+            const swipeThreshold = 50;
             if (touchEndX < touchStartX - swipeThreshold) {
-                // 向左滑，切下一张
                 let nextIndex = (currentSlideIndex + 1) % slides.length;
                 changeSlide(nextIndex);
             }
             if (touchEndX > touchStartX + swipeThreshold) {
-                // 向右滑，切上一张
                 let prevIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
                 changeSlide(prevIndex);
             }
