@@ -10,19 +10,19 @@ html { scroll-behavior: smooth; }
 body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
 button, a, .load-more-trigger, .dot, .btn-primary, .btn-secondary, .exit-btn, .lang-switch { cursor: pointer; }
 
-/* 导航栏 */
+/* 导航栏 (电脑端) */
 nav { background-color: var(--bg-color); padding: 1.5rem 2rem; display: flex; justify-content: center; align-items: center; border-bottom: 1px solid var(--border-color); position: relative; min-height: 80px; }
 .nav-links { display: flex; gap: 50px; }
 nav a { color: #888; text-decoration: none; font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; transition: all 0.3s ease; }
 nav a:hover { color: var(--primary-color); text-shadow: 0 0 8px rgba(255, 0, 51, 0.5); }
 nav a.active { color: var(--primary-color); border-bottom: 2px solid var(--primary-color); padding-bottom: 5px; }
 
-/* 滑动切换开关 */
+/* 滑动切换开关 (电脑端) */
 .lang-switch { position: absolute; right: 2rem; top: 50%; transform: translateY(-50%); display: flex; background: #111; border: 1px solid #333; border-radius: 20px; padding: 4px; width: 90px; height: 34px; box-sizing: border-box; }
 .lang-option { flex: 1; display: flex; justify-content: center; align-items: center; font-size: 0.8rem; font-family: sans-serif; font-weight: bold; border-radius: 15px; transition: all 0.3s ease; color: #666; user-select: none; }
 .lang-option.active { background: #fff; color: #000; box-shadow: 0 2px 8px rgba(255,255,255,0.2); }
 
-/* 首页排版 */
+/* 首页排版 (电脑端) */
 .hero-section { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 6rem 2rem; flex: 1; width: 100%; }
 .hero-text { flex: 1; max-width: 600px; z-index: 2; }
 .tag { display: inline-block; color: #666; font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 2rem; text-transform: uppercase; }
@@ -35,7 +35,7 @@ nav a.active { color: var(--primary-color); border-bottom: 2px solid var(--prima
 .btn-secondary { color: #888; text-decoration: none; font-size: 1rem; border-bottom: 1px solid #333; padding-bottom: 2px; transition: all 0.3s; }
 .btn-secondary:hover { color: #fff; border-color: #fff; }
 
-/* 图片轮播 */
+/* 图片轮播 (电脑端) */
 .hero-visual { flex: 1; display: flex; justify-content: flex-end; position: relative; }
 .image-frame { width: 450px; height: 500px; position: relative; border-radius: 8px; overflow: hidden; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%), linear-gradient(to left, transparent 0%, black 15%); mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%), linear-gradient(to left, transparent 0%, black 15%); -webkit-mask-composite: source-in; mask-composite: intersect; }
 .slider { width: 100%; height: 100%; position: relative; }
@@ -82,10 +82,9 @@ footer { text-align: center; padding: 3rem 0; color: #666; font-size: 0.9rem; ma
 footer span { color: var(--primary-color); }
 
 /* =========================================
-   👇 专门针对手机的优化（彻底解决排版问题）
+   👇 手机端终极修复（彻底解决重叠）
    ========================================= */
 @media (max-width: 900px) {
-    /* 主页面改为上下结构 */
     .hero-section { flex-direction: column; padding: 4rem 1.5rem; text-align: center; gap: 2.5rem; }
     .hero-text { display: flex; flex-direction: column; align-items: center; }
     .hero-text h1 { font-size: 4rem; }
@@ -97,25 +96,22 @@ footer span { color: var(--primary-color); }
 }
 
 @media (max-width: 600px) { 
-    /* 手机导航栏：改为紧凑的上下两行结构 */
-    nav { padding: 1rem; flex-direction: column; gap: 12px; } 
+    /* 🚨 核心修复：导航栏改成上下两行，取消绝对定位 */
+    nav { padding: 1.5rem 1rem; flex-direction: column; gap: 15px; } 
     .nav-links { gap: 12px; flex-wrap: wrap; justify-content: center; width: 100%; }
     nav a { font-size: 0.85rem; letter-spacing: 1px; }
     
-    /* 语言按钮缩小放右上角 */
-    .lang-switch { right: 1rem; width: 70px; height: 28px; padding: 3px; }
+    /* 语言开关不再悬浮，而是乖乖呆在第二行居中 */
+    .lang-switch { position: static; transform: none; margin: 5px auto 0 auto; width: 75px; height: 28px; padding: 3px; }
     .lang-option { font-size: 0.7rem; }
     
     .hero-section { padding: 2rem 1rem; gap: 1.5rem; }
     .hero-text h1 { font-size: 2.8rem; letter-spacing: 0; }
     .subtitle { font-size: 1.3rem; margin-bottom: 1rem; }
     .hero-text p { font-size: 0.95rem; line-height: 1.6; }
-    
-    /* 手机按钮变宽 */
     .hero-actions { flex-direction: column; width: 100%; gap: 15px; }
     .btn-primary, .btn-secondary { width: 100%; text-align: center; padding: 12px; font-size: 0.95rem; }
     
-    /* 内页和心动模式适配 */
     .container h1 { font-size: 2.5rem; margin-bottom: 2rem; }
     .card { padding: 1.5rem; }
     .heartbeat-card { padding: 2rem 1rem; }
